@@ -41,6 +41,50 @@ app.get("/api/users/auth", auth, (req, res) => {
 //     PRODUCTS
 //==================
 
+// by ARRIVAL
+// /articles?sortBy=createdAt&order=desc&limit=4
+
+// BY SELL
+// /articles?sortBy=sold&order=desc&limit=4
+app.get("/api/product/articles", (req, res) => {
+  let order = req.query ? req.query.order : "asc";
+  let sortBy = req.query.sortBy ? req.query.sortBy : "_id";
+  let limit = req.query.limit ? parseInt(req.query.limit) : 100;
+
+  Product.find()
+    .populate("brand")
+    .populate("wood")
+    .sort([[sortBy, order]])
+    .limit(limit)
+    .exec((err, articles) => {
+      if (err) return res.status(400).send(err);
+      res.send(articles);
+    });
+});
+
+// Getting a product by productId
+app.get("/api/product/articles_by_id", (req, res) => {
+  let type = req.query.type;
+  let items = req.query.id;
+
+  if (type === "array") {
+    let ids = req.query.id.split(",");
+    items = [];
+    items = ids.map(item => {
+      return mongoose.Types.ObjectId(item); // pushes object ids to the array
+    });
+  }
+  Product.find({ _id: { $in: items } })
+    // since brands and wood are referenced by id, populate is used to display the brand and wood objects in order to have access to name
+    // .populate() is a mongoose method to reference documents in other collections
+    .populate("brand")
+    .populate("wood")
+    // .exec returns an array that contains matches the search param
+    .exec((err, docs) => {
+      return res.status(200).send(docs);
+    });
+});
+
 app.post("/api/product/article", auth, admin, (req, res) => {
   const product = new Product(req.body);
   product.save((err, doc) => {
