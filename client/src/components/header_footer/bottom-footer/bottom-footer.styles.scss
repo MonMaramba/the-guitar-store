@@ -1,0 +1,72 @@
+.bck_b_dark {
+  background: #272723;
+
+  .container {
+    width: 100%;
+    margin: 0 auto;
+
+    .logo {
+      text-align: center;
+      font-family: "Monoton", cursive;
+      color: #ffffff;
+      font-size: 40px;
+      padding: 11px 0px;
+    }
+
+    hr {
+      width: 80%;
+      text-align: center;
+      color: #828282;
+    }
+
+    .wrapper {
+      display: flex;
+      color: #828282;
+
+      @media screen and (max-width: 800px) {
+        flex-direction: column;
+      }
+      .left {
+        flex: 1;
+        padding-left: 12%;
+
+        h2 {
+          @media screen and (max-width: 800px) {
+            text-align: center;
+            position: relative;
+            left: -8%;
+          }
+        }
+
+        .business_nfo {
+          display: flex;
+          flex-wrap: wrap;
+
+          .tag {
+            display: flex;
+            flex-grow: 1;
+            position: relative;
+            width: 50%;
+            margin-bottom: 30px;
+
+            .icon {
+              font-size: 26px;
+              top: 10px;
+            }
+
+            .nfo {
+              padding-left: 20px;
+            }
+          }
+        }
+      }
+      .right {
+        flex: 1;
+
+        @media screen and (max-width: 800px) {
+          text-align: center;
+        }
+      }
+    }
+  }
+}
