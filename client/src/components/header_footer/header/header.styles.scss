@@ -3,6 +3,11 @@ header {
   z-index: 999;
   width: 100%;
   border-bottom: 1px solid white;
+
+  @media screen and(max-width: 800px) {
+    width: 100%;
+    min-height: 100vh;
+  }
 }
 
 .bck_b_light {
@@ -19,7 +24,7 @@ header {
       flex-direction: row-reverse;
 
       @media screen and(max-width: 800px) {
-        width: 49%;
+        width: 45%;
       }
 
       .logo {

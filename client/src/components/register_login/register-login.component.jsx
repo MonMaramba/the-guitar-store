@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "../utils/button";
 
+import "./register-login.styles.scss";
+
 const RegisterLogin = () => {
   return (
     <div className="page_wrapper">
@@ -8,7 +10,11 @@ const RegisterLogin = () => {
         <div className="register_login_container">
           <div className="left">
             <h1>New Customers</h1>
-            <p>Blah!</p>
+            <p>
+              Filet mignon ground round t-bone ham hock pig, spare ribs strip
+              steak hamburger drumstick burgdoggen pastrami venison ribeye pork
+              chop. Tongue beef ribs bresaola, chuck boudin beef pork loin.
+            </p>
             <Button
               type="default"
               title="Create an account"

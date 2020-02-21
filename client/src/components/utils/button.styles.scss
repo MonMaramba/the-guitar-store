@@ -1,6 +1,20 @@
 .my_button {
-  margin: 10px auto;
-  background-color: grey;
-  width: 40px;
-  height: 20px;
+  cursor: pointer;
+  width: 30%;
+  height: 15%;
+  border: 1px rgb(209, 204, 204) solid;
+  text-transform: uppercase;
+  padding: 10px;
+  background: #e1ddc3;
+  margin-top: 5px;
+  font-family: "Oswald", sans-serif;
+  font-size: 16px;
+}
+
+.link_default {
+  text-transform: uppercase;
+  padding: 5px;
+  display: table;
+  background: #e1ddc3;
+  margin-top: 10px;
 }
