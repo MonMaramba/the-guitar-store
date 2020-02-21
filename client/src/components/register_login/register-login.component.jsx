@@ -1,6 +1,8 @@
 import React from "react";
 import Button from "../utils/button";
 
+import Login from "./login";
+
 import "./register-login.styles.scss";
 
 const RegisterLogin = () => {
@@ -27,7 +29,7 @@ const RegisterLogin = () => {
           <div className="right">
             <h2>Register customers</h2>
             <p>If you have an account please log in.</p>
-            LOG IN
+            <Login />
           </div>
         </div>
       </div>
