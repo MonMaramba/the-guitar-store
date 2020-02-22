@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import FormField from "../utils/Form/formfield";
+import { update } from "../utils/Form/formActions";
 
 export default class Login extends Component {
   state = {
@@ -41,8 +42,14 @@ export default class Login extends Component {
       }
     }
   };
-  submitForm = () => {};
-  updateForm = () => {};
+  submitForm = element => {};
+  updateForm = element => {
+    const newFormdata = update(element, this.state.formdata, "login");
+    this.setState({
+      formError: false,
+      formdata: newFormdata
+    });
+  };
   render() {
     return (
       <div className="signin_wrapper">
@@ -50,6 +57,12 @@ export default class Login extends Component {
           <FormField
             id={"email"}
             formdata={this.state.formdata.email}
+            change={element => this.updateForm(element)}
+          />
+
+          <FormField
+            id={"password"}
+            formdata={this.state.formdata.password}
             change={element => this.updateForm(element)}
           />
         </form>
