@@ -2,9 +2,9 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import FormField from "../utils/Form/formfield";
-import { update } from "../utils/Form/formActions";
+import { update, generateData, isFormValid } from "../utils/Form/formActions";
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     formError: false,
     formSuccess: "",
@@ -42,7 +42,19 @@ export default class Login extends Component {
       }
     }
   };
-  submitForm = element => {};
+  submitForm = event => {
+    event.preventDefault();
+
+    let dataToSubmit = generateData(this.state.formdata, "login");
+    let formIsValid = isFormValid(this.state.formdata, "login");
+    if (formIsValid) {
+      console.log(dataToSubmit);
+    } else {
+      this.setState({
+        formError: true
+      });
+    }
+  };
   updateForm = element => {
     const newFormdata = update(element, this.state.formdata, "login");
     this.setState({
@@ -65,8 +77,14 @@ export default class Login extends Component {
             formdata={this.state.formdata.password}
             change={element => this.updateForm(element)}
           />
+          {this.state.formError ? (
+            <div className="error_label">Please check your data</div>
+          ) : null}
+          <button onClick={event => this.submitForm(event)}>Go!</button>
         </form>
       </div>
     );
   }
 }
+
+export default connect()(Login);
