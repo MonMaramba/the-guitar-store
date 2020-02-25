@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { loginUser } from "../../redux/actions/user_actions";
+import { withRouter } from "react-router-dom";
 
 import FormField from "../utils/Form/formfield";
 import { update, generateData, isFormValid } from "../utils/Form/formActions";
+
+import "./login.styles.scss";
 
 class Login extends Component {
   state = {
@@ -48,7 +52,16 @@ class Login extends Component {
     let dataToSubmit = generateData(this.state.formdata, "login");
     let formIsValid = isFormValid(this.state.formdata, "login");
     if (formIsValid) {
-      console.log(dataToSubmit);
+      this.props.dispatch(loginUser(dataToSubmit)).then(response => {
+        if (response.payload.loginSuccess) {
+          console.log(response.payload);
+          this.props.history.push("/user/dashboard");
+        } else {
+          this.setState({
+            formError: true
+          });
+        }
+      });
     } else {
       this.setState({
         formError: true
@@ -80,11 +93,16 @@ class Login extends Component {
           {this.state.formError ? (
             <div className="error_label">Please check your data</div>
           ) : null}
-          <button onClick={event => this.submitForm(event)}>Go!</button>
+          <button
+            className="go_button"
+            onClick={event => this.submitForm(event)}
+          >
+            Go!
+          </button>
         </form>
       </div>
     );
   }
 }
 
-export default connect()(Login);
+export default connect()(withRouter(Login));

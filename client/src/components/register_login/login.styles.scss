@@ -1,4 +1,16 @@
 .signin_wrapper {
   width: 300px;
-  background-color: grey;
+
+  .go_button {
+    cursor: pointer;
+    width: 30%;
+    height: 15%;
+    border: 1px rgb(209, 204, 204) solid;
+    text-transform: uppercase;
+    padding: 10px;
+    background: #e1ddc3;
+    margin-top: 5px;
+    font-family: "Oswald", sans-serif;
+    font-size: 16px;
+  }
 }
