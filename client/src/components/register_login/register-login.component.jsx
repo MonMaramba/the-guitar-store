@@ -1,7 +1,7 @@
 import React from "react";
 import Button from "../utils/button";
 
-import Login from "./login";
+import Login from "./login.component";
 
 import "./register-login.styles.scss";
 
