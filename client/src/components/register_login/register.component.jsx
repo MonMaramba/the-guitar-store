@@ -138,7 +138,7 @@ class Register extends Component {
                     />
                   </div>
                 </div>
-                <div>
+                <div className="emailField" style={{ width: "102.5%" }}>
                   <FormField
                     id={"email"}
                     formdata={this.state.formdata.email}
