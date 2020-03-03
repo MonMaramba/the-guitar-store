@@ -1,10 +1,12 @@
 import React from "react";
 import UserLayout from "../../hoc/user-hoc";
 
+import "./user-dashboard.styles.scss";
+
 const UserDashboard = () => {
   return (
     <UserLayout>
-      <div>Dashboard</div>;
+      <div>Dashboard</div>
     </UserLayout>
   );
 };
