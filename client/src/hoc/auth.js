@@ -28,6 +28,8 @@ export default function(ComposedClass, reload, adminRoute = null) {
             }
           }
         }
+
+        this.setState({ loading: false });
       });
     }
 
@@ -39,7 +41,7 @@ export default function(ComposedClass, reload, adminRoute = null) {
       //       </div>
       //     );
       //   }
-      return <ComposedClass {...this.props} user={this.props} />;
+      return <ComposedClass {...this.props} user={this.props.user} />;
     }
   }
 

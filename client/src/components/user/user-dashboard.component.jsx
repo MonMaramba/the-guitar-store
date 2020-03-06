@@ -4,17 +4,19 @@ import Mybutton from "../utils/button";
 
 import "./user-dashboard.styles.scss";
 
-const UserDashboard = () => {
+const UserDashboard = ({ user }) => {
+  console.log(user.userData);
+
   return (
     <UserLayout>
       <div>
         <div className="user_nfo_panel">
           <h1>User information</h1>
-
-          <span>name</span>
-          <span>lastname</span>
-          <span>email</span>
-
+          <div>
+            <span>name</span>
+            <span>lastname</span>
+            <span>email</span>
+          </div>
           <Mybutton
             type="default"
             title="Edit account info"
