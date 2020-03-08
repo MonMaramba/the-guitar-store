@@ -187,6 +187,7 @@ app.post("/api/users/login", (req, res) => {
   });
 });
 
+// log out route
 app.get("/api/users/logout", auth, (req, res) => {
   User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, doc) => {
     if (err) return res.json({ success: false, err });
@@ -196,6 +197,7 @@ app.get("/api/users/logout", auth, (req, res) => {
   });
 });
 
+// creating the server
 const port = process.env.PORT || 3002;
 
 app.listen(port, () => {

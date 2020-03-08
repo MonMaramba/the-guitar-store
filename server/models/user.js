@@ -45,9 +45,11 @@ const userSchema = mongoose.Schema({
 });
 
 // Hashing the password so it doesn't show
+// .pre executes function in parameter2 before doing parameter1
 userSchema.pre("save", function(next) {
   var user = this;
 
+  // so that pw only gets hashed when user is trying to change thier pw. isModified is a method from mongo
   if (user.isModified("password")) {
     bcrypt.genSalt(SALT_I, function(err, salt) {
       if (err) return next(err);
@@ -82,6 +84,7 @@ userSchema.methods.generateToken = function(cb) {
   });
 };
 
+// statics
 userSchema.statics.findByToken = function(token, cb) {
   var user = this;
 
