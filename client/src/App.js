@@ -4,7 +4,7 @@ import axios from "axios";
 class App extends React.Component {
   componentDidMount() {
     axios.get("/api/product/brands").then(response => {
-      console.log(response);
+      // console.log(response);
     });
   }
   render() {

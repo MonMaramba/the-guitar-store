@@ -1,3 +1,4 @@
+//proxy fix for cross origin requests
 const proxy = require("http-proxy-middleware");
 
 module.exports = app => {

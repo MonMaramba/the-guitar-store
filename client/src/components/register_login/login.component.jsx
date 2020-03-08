@@ -46,6 +46,7 @@ class Login extends Component {
       }
     }
   };
+
   submitForm = event => {
     event.preventDefault();
 
@@ -68,6 +69,7 @@ class Login extends Component {
       });
     }
   };
+
   updateForm = element => {
     const newFormdata = update(element, this.state.formdata, "login");
     this.setState({
@@ -75,6 +77,7 @@ class Login extends Component {
       formdata: newFormdata
     });
   };
+
   render() {
     return (
       <div className="signin_wrapper">
@@ -93,6 +96,7 @@ class Login extends Component {
           {this.state.formError ? (
             <div className="error_label">Please check your data</div>
           ) : null}
+
           <button
             className="go_button"
             onClick={event => this.submitForm(event)}

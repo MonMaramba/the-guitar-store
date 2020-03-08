@@ -8,7 +8,7 @@ import Register from "./components/register_login/register.component";
 import Auth from "./hoc/auth";
 import UserDashboard from "./components/user/user-dashboard.component";
 
-import HomePage from "./pages/home.component";
+import HomePage from "./components/home/home.component";
 
 const Routes = () => {
   return (
