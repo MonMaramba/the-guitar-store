@@ -7,7 +7,8 @@ import { auth } from "../redux/actions/user_actions";
 export default function(ComposedClass, reload, adminRoute = null) {
   class AuthenticationCheck extends Component {
     state = {
-      loading: true
+      loading: true,
+      isMounted: false
     };
 
     componentDidMount() {
@@ -29,7 +30,7 @@ export default function(ComposedClass, reload, adminRoute = null) {
           }
         }
 
-        this.setState({ loading: false });
+        this.setState({ loading: false, isMounted: true });
       });
     }
 
@@ -41,7 +42,7 @@ export default function(ComposedClass, reload, adminRoute = null) {
       //       </div>
       //     );
       //   }
-      return <ComposedClass {...this.props} user={this.props.user} />;
+      return <ComposedClass {...this.props} user={this.props.user.userData} />;
     }
   }
 

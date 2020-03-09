@@ -1,12 +1,14 @@
 import React from "react";
 import UserLayout from "../../hoc/user-hoc";
 import Mybutton from "../utils/button";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
 
 import "./user-dashboard.styles.scss";
 
-const UserDashboard = ({ user }) => {
-  console.log(user.userData);
-
+const UserDashboard = props => {
+  const User = props.user;
+  console.log(User);
   return (
     <UserLayout>
       <div>
@@ -32,4 +34,4 @@ const UserDashboard = ({ user }) => {
   );
 };
 
-export default UserDashboard;
+export default connect()(withRouter(UserDashboard));
