@@ -10,7 +10,7 @@ import UserDashboard from "./components/user/user-dashboard.component";
 
 import HomePage from "./components/home/home.component";
 
-const Routes = () => {
+const Routes = props => {
   return (
     <Layout>
       <Switch>

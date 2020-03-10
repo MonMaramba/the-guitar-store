@@ -6,16 +6,16 @@ import { connect } from "react-redux";
 
 import "./user-dashboard.styles.scss";
 
-const UserDashboard = props => {
-  const User = props.user;
-  console.log(User);
+const UserDashboard = user => {
+  let User = user.user;
+  console.log(User.userData);
   return (
     <UserLayout>
       <div>
         <div className="user_nfo_panel">
           <h1>User information</h1>
           <div>
-            <span>name</span>
+            <span>{user.userData.name}</span>
             <span>lastname</span>
             <span>email</span>
           </div>
