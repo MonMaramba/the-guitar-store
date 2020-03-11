@@ -6,18 +6,23 @@ import { connect } from "react-redux";
 
 import "./user-dashboard.styles.scss";
 
-const UserDashboard = user => {
-  let User = user.user;
-  console.log(User.userData);
+const UserDashboard = ({ user }) => {
+  let userData = user.userData;
+  let userArr = [];
+  for (let key in userData) {
+    userArr.push(userData[key]);
+  }
+  console.log(userArr);
+
   return (
     <UserLayout>
       <div>
         <div className="user_nfo_panel">
           <h1>User information</h1>
           <div>
-            <span>{user.userData.name}</span>
-            <span>lastname</span>
-            <span>email</span>
+            <span>{userArr[3]}</span>
+            <span>{userArr[4]}</span>
+            <span>{userArr[2]}</span>
           </div>
           <Mybutton
             type="default"
@@ -34,4 +39,9 @@ const UserDashboard = user => {
   );
 };
 
-export default connect()(withRouter(UserDashboard));
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
+export default connect(mapStateToProps)(withRouter(UserDashboard));
