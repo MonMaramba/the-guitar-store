@@ -42,6 +42,17 @@ class Header extends Component {
     ]
   };
 
+  cartLink = (item, i) => {
+    const user = this.props.user.userData;
+
+    return (
+      <div className="cart_link">
+        <span>{user.cart ? user.cart.length : 0}</span>
+        <Link to={item.linkTo}>{item.name}</Link>
+      </div>
+    );
+  };
+
   defaultLink = (item, i) => (
     <Link to={item.linkTo} key={i}>
       {item.name}
@@ -65,7 +76,11 @@ class Header extends Component {
       });
     }
     return list.map((item, i) => {
-      return this.defaultLink(item, i);
+      if (item.name !== "My Cart") {
+        return this.defaultLink(item, i);
+      } else {
+        return this.cartLink(item, i);
+      }
     });
   };
   render() {
