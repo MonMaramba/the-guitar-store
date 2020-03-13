@@ -77,6 +77,12 @@ header {
         }
       }
 
+      .log_out_link {
+        cursor: pointer;
+        display: inline-block;
+        margin-left: 3px;
+      }
+
       a {
         text-decoration: none;
         color: inherit;

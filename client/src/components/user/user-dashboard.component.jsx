@@ -12,7 +12,6 @@ const UserDashboard = ({ user }) => {
   for (let key in userData) {
     userArr.push(userData[key]);
   }
-  console.log(userArr);
 
   return (
     <UserLayout>
