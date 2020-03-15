@@ -6,12 +6,27 @@
     position: relative;
     background-size: cover !important;
     background-position: center left !important;
-    width: 900px;
 
     .featured_action {
       position: absolute;
       top: 45%;
       left: 8%;
+      .tag {
+        background: #82828287;
+        color: #ffffff;
+        padding: 0px 20px;
+        text-transform: uppercase;
+        display: table;
+      }
+      .title {
+        font-size: 70px;
+        font-weight: 700;
+      }
+      .low_title {
+        font-size: 50px;
+        font-weight: 300;
+        margin-top: 10px;
+      }
     }
   }
 }

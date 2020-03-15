@@ -28,7 +28,7 @@ const HomeSlider = props => {
     speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    arrow: false
+    arrows: false
   };
 
   const generateSlides = () =>
@@ -43,7 +43,18 @@ const HomeSlider = props => {
                 width: `${window.innerWidth}px`
               }}
             >
-              <div className="featured_action"></div>
+              <div className="featured_action">
+                <div className="tag title">{item.lineOne}</div>
+                <div className="tag low_title">{item.lineTwo}</div>
+                <div>
+                  <MyButton
+                    type="default"
+                    title={item.linkTitle}
+                    linkTo={item.linkTo}
+                    addStyles={{ margin: "10px 0 0 0" }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
         ))
