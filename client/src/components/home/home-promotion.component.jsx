@@ -2,6 +2,8 @@ import React from "react";
 import MyButton from "../utils/button";
 import Photo3 from "../../images/featured/featured_home_3.jpg";
 
+import "./home_promotion.styles.scss";
+
 const HomePromotion = props => {
   const promotion = {
     img: Photo3,
@@ -19,7 +21,7 @@ const HomePromotion = props => {
       >
         <div className="tag title">{promotion.lineOne}</div>
         <div className="tag low_title">{promotion.lineTwo}</div>
-        <div>
+        <div className="button">
           <MyButton
             type="default"
             title={promotion.linkTitle}
