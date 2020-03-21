@@ -1,10 +1,11 @@
 import React from "react";
+import Card from "./card.component";
 
 import "./card_block.styles.scss";
 
 const CardBlock = props => {
   const renderCards = () =>
-    props.list ? props.list.map((card, i) => <div>"CARD"</div>) : null;
+    props.list ? props.list.map((card, i) => <Card key={i} {...card} />) : null;
 
   return (
     <div className="card_block">
