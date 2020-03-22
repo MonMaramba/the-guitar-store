@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-
-import NoImageAvailable from "../../images/guitars/Ibanez AS53-TF/8085983_800.jpg";
+import MyButton from "./button";
 
 import "./card_component.styles.scss";
 
@@ -9,7 +8,7 @@ class Card extends Component {
     if (images.length > 0) {
       return images[0].url;
     } else {
-      return "/images/image_not_available.png";
+      return "/images/noImage.png";
     }
   }
 
@@ -31,7 +30,25 @@ class Card extends Component {
           </div>
         </div>
         {props.grid ? <div className="description">xxxxx</div> : null}
-        <div></div>
+        <div className="actions">
+          <div className="button_wrapp">
+            <MyButton
+              type="default"
+              altClass="card_link"
+              title="View product"
+              linkTo={`/product_detail/${props.id}`}
+              addStyles={{ margin: "10px 0 0 0" }}
+            />
+          </div>
+          <div className="button_wrapp">
+            <MyButton
+              type="bag_link"
+              runAction={() => {
+                console.log("added to cart");
+              }}
+            />
+          </div>
+        </div>
       </div>
     );
   }
