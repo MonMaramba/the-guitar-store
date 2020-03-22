@@ -2,6 +2,8 @@ import React, { Component } from "react";
 
 import NoImageAvailable from "../../images/guitars/Ibanez AS53-TF/8085983_800.jpg";
 
+import "./card_component.styles.scss";
+
 class Card extends Component {
   renderCardImage(images) {
     if (images.length > 0) {
