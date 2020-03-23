@@ -1,7 +1,10 @@
 .my_button {
   cursor: pointer;
-  width: 30%;
-  height: 15%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  height: fit-content;
   border: 1px rgb(209, 204, 204) solid;
   text-transform: uppercase;
   padding: 10px;

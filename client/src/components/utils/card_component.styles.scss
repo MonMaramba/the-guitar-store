@@ -44,4 +44,40 @@
       }
     }
   }
+  .actions {
+    display: flex;
+    padding: 15px 0 10px 0;
+
+    .button_wrapp {
+      .my_button {
+        .card_link {
+          width: 100%;
+          border: 1px solid #dcdcdc;
+          padding: 5px 10px;
+          display: flex;
+          box-sizing: border-box;
+          text-align: center;
+          font-size: 14px;
+          text-transform: uppercase;
+          color: #3d3b2f;
+          background: #f8f8f8;
+          transition: all 200ms ease-in;
+          cursor: pointer;
+
+          a {
+            text-decoration: none;
+            color: inherit;
+          }
+        }
+        .card_link:hover {
+          background: #aaaaaa;
+          color: #ffff;
+        }
+      }
+    }
+    .button_wrapp:nth-child(1) {
+      flex-grow: 3;
+      padding-right: 10px;
+    }
+  }
 }
