@@ -46,7 +46,7 @@
   }
   .actions {
     display: flex;
-    padding: 15px 0 10px 0;
+    padding: 0 -5px 0px 0;
 
     .button_wrapp {
       .my_button {
@@ -76,8 +76,12 @@
       }
     }
     .button_wrapp:nth-child(1) {
-      flex-grow: 3;
-      padding-right: 10px;
+      flex-grow: 1;
+      position: relative;
+    }
+    .button_wrapp:nth-child(2) {
+      position: relative;
+      right: 10px;
     }
   }
 }

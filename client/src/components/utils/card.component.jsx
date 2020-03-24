@@ -33,6 +33,7 @@ class Card extends Component {
         <div className="actions">
           <div className="button_wrapp">
             <MyButton
+              className="big_button"
               type="default"
               altClass="card_link"
               title="View product"
