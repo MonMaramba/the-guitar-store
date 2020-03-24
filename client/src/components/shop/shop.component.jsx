@@ -4,6 +4,8 @@ import { connect } from "react-redux";
 import PageTop from "../utils/page_top.component";
 import { getBrands, getWoods } from "../../redux/actions/products_actions";
 
+import "./shop.styles.scss";
+
 class Shop extends Component {
   componentDidMount() {
     this.props.dispatch(getBrands());
