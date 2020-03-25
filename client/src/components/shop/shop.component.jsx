@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import PageTop from "../utils/page_top.component";
 import { getBrands, getWoods } from "../../redux/actions/products_actions";
+import CollapsibleCheckbox from "../utils/collapsibleCheckbox.component";
 
 import "./shop.styles.scss";
 
@@ -12,6 +13,8 @@ class Shop extends Component {
     this.props.dispatch(getWoods());
   }
 
+  handleFilters = () => {};
+
   render() {
     const products = this.props.products;
     return (
@@ -19,7 +22,14 @@ class Shop extends Component {
         <PageTop title="Browse Products" />
         <div className="container">
           <div className="shop_wrapper">
-            <div className="left">left</div>
+            <div className="left">
+              <CollapsibleCheckbox
+                initState={true}
+                title="Brands"
+                list={products.brands}
+                handleFilters={filters => this.handleFilters(filters, "brand")}
+              />
+            </div>
             <div className="right">right</div>
           </div>
         </div>
