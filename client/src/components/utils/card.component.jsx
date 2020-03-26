@@ -4,6 +4,7 @@ import MyButton from "./button";
 import "./card_component.styles.scss";
 
 class Card extends Component {
+  // rendering the image based on presence or absence of an image in the props
   renderCardImage(images) {
     if (images.length > 0) {
       return images[0].url;
@@ -14,6 +15,7 @@ class Card extends Component {
 
   render() {
     const props = this.props;
+
     return (
       <div className={`card_item_wrapper ${props.grid}`}>
         <div

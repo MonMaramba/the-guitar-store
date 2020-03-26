@@ -46,33 +46,52 @@
   }
   .actions {
     display: flex;
-    padding: 0 -5px 0px 0;
+    justify-content: space-between;
+    // padding: 0 0px 0px 10px;
 
     .button_wrapp {
-      .my_button {
-        .card_link {
-          width: 100%;
-          border: 1px solid #dcdcdc;
-          padding: 5px 10px;
-          display: flex;
-          box-sizing: border-box;
-          text-align: center;
-          font-size: 14px;
-          text-transform: uppercase;
-          color: #3d3b2f;
-          background: #f8f8f8;
-          transition: all 200ms ease-in;
-          cursor: pointer;
+      .card_link {
+        width: 100%;
+        border: 1px solid #dcdcdc;
+        padding: 5px 10px;
+        display: flex;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #3d3b2f;
+        background: #f8f8f8;
+        transition: all 200ms ease-in;
+        cursor: pointer;
 
-          a {
-            text-decoration: none;
-            color: inherit;
-          }
+        a {
+          text-decoration: none;
+          color: inherit;
         }
-        .card_link:hover {
-          background: #aaaaaa;
-          color: #ffff;
-        }
+      }
+      .card_link:hover {
+        background: #aaaaaa;
+        color: #ffff;
+      }
+      .bag_link {
+        width: 100%;
+        border: 1px solid #dcdcdc;
+        padding: 5px 10px;
+        display: block;
+        box-sizing: border-box;
+        text-align: center;
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #c3c0b1;
+        background: #f8f8f8;
+        transition: all 200ms ease-in;
+        cursor: pointer;
+        margin-left: 10px;
+      }
+
+      .bag_link:hover {
+        background: #aaaaaa;
+        color: #ffff;
       }
     }
     .button_wrapp:nth-child(1) {
