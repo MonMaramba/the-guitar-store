@@ -1,11 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { frets } from "../utils/Form/fixed_categories";
+import { frets, price } from "../utils/Form/fixed_categories";
 
 import PageTop from "../utils/page_top.component";
 import { getBrands, getWoods } from "../../redux/actions/products_actions";
 import CollapsibleCheckbox from "../utils/collapsibleCheckbox.component";
+import CollapseRadio from "../utils/Form/collapseRadioButtons.component";
 
 import "./shop.styles.scss";
 
@@ -62,6 +63,12 @@ class Shop extends Component {
                 title="Woods"
                 list={products.woods}
                 handleFilters={filters => this.handleFilters(filters, "woods")}
+              />
+              <CollapseRadio
+                initState={true}
+                title="Price"
+                list={price}
+                handleFilters={filters => this.handleFilters(filters, "price")}
               />
             </div>
             <div className="right">right</div>
