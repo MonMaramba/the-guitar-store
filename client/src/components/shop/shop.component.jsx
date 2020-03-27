@@ -26,10 +26,11 @@ class Shop extends Component {
     this.props.dispatch(getBrands());
     this.props.dispatch(getWoods());
   }
-
+  // filters is being passed from child prop collapsibleCheckbox. This is the newChecked variable array that contains product ids
   handleFilters = (filters, category) => {
-    const newFilters = { ...this.state.filters };
-    newFilters[category] = filters;
+    console.log(category);
+    const newFilters = { ...this.state.filters }; // copying state.filters
+    newFilters[category] = filters; //putting filters passed from children checkbox into the shop state
 
     this.setState({
       filters: newFilters
