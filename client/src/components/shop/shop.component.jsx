@@ -4,7 +4,11 @@ import { connect } from "react-redux";
 import { frets, price } from "../utils/Form/fixed_categories";
 
 import PageTop from "../utils/page_top.component";
-import { getBrands, getWoods } from "../../redux/actions/products_actions";
+import {
+  getProductsToShop,
+  getBrands,
+  getWoods
+} from "../../redux/actions/products_actions";
 import CollapsibleCheckbox from "../utils/collapsibleCheckbox.component";
 import CollapseRadio from "../utils/Form/collapseRadioButtons.component";
 
@@ -26,8 +30,13 @@ class Shop extends Component {
   componentDidMount() {
     this.props.dispatch(getBrands());
     this.props.dispatch(getWoods());
+
+    this.props.dispatch(
+      getProductsToShop(this.state.skip, this.state.limit, this.state.filters)
+    );
   }
 
+  // handlePrice function will search for the price range for the choice on the radio buttons
   handlePrice = value => {
     const data = price;
     let array = [];
@@ -48,14 +57,23 @@ class Shop extends Component {
       let priceValues = this.handlePrice(filters);
       newFilters[category] = priceValues;
     }
-
+    this.showFilteredResults(newFilters);
     this.setState({
       filters: newFilters
     });
   };
 
+  showFilteredResults = filters => {
+    this.props
+      .dispatch(getProductsToShop(0, this.state.limit, filters))
+      .then(() => {
+        this.setState({
+          skip: 0
+        });
+      });
+  };
+
   render() {
-    console.log(this.state.filters);
     const products = this.props.products;
     return (
       <div>
