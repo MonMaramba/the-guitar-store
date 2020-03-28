@@ -15,7 +15,7 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 class CollapseRadio extends Component {
   state = {
     open: false,
-    value: 0
+    value: "0"
   };
 
   componentDidMount() {
@@ -35,6 +35,23 @@ class CollapseRadio extends Component {
       <FontAwesomeIcon icon={faAngleDown} className="icon" />
     );
 
+  renderList = () =>
+    this.props.list
+      ? this.props.list.map(value => (
+          <FormControlLabel
+            key={value._id}
+            value={`${value._id}`}
+            control={<Radio />}
+            label={value.name}
+          />
+        ))
+      : null;
+
+  handleChange = event => {
+    this.props.handleFilters(event.target.value);
+    this.setState({ value: event.target.value });
+  };
+
   render() {
     return (
       <div>
@@ -51,10 +68,14 @@ class CollapseRadio extends Component {
           </ListItem>
           <Collapse in={this.state.open} timeout="auto" unmountOnExit>
             <List component="div" disablePadding>
-              <ListItemText
-                primary={this.props.title}
-                className="collapse_title"
-              />
+              <RadioGroup
+                aria-label="prices"
+                name="prices"
+                value={this.state.value}
+                onChange={this.handleChange}
+              >
+                {this.renderList()}
+              </RadioGroup>
             </List>
           </Collapse>
         </List>
