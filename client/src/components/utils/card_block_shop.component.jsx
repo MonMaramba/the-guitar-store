@@ -1,6 +1,8 @@
 import React from "react";
 import Card from "./card.component";
 
+import "./card_block_shop.styles.scss";
+
 const CardBlockShop = props => {
   const renderCards = () =>
     props.list

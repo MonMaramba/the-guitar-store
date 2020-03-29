@@ -11,6 +11,22 @@
 
     .right {
       width: 800px;
+
+      .shop_options {
+        border-bottom: 1px solid #e8e8e8;
+        margin: 0px 20px 20px 20px;
+        div {
+          display: flex;
+          div {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            flex-wrap: wrap;
+            align-content: center;
+          }
+        }
+      }
     }
   }
 }

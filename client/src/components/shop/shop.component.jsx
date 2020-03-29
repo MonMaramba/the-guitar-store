@@ -114,15 +114,15 @@ class Shop extends Component {
               <div className="shop_options">
                 <div className="shop_grids clear"> grids</div>
               </div>
-            </div>
-            <div>
-              <LoadMoreCards
-                grid={this.state.grid}
-                limit={this.state.limit}
-                size={products.toShopSize}
-                products={products.toShop}
-                loadMore={() => console.log("we want more!")}
-              />
+              <div className="card_container">
+                <LoadMoreCards
+                  grid={this.state.grid}
+                  limit={this.state.limit}
+                  size={products.toShopSize}
+                  products={products.toShop}
+                  loadMore={() => console.log("we want more!")}
+                />
+              </div>
             </div>
           </div>
         </div>
