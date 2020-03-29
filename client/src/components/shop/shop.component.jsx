@@ -77,6 +77,8 @@ class Shop extends Component {
       });
   };
 
+  loadMoreCards = () => {};
+
   render() {
     const products = this.props.products;
     return (
@@ -120,7 +122,7 @@ class Shop extends Component {
                   limit={this.state.limit}
                   size={products.toShopSize}
                   products={products.toShop}
-                  loadMore={() => console.log("we want more!")}
+                  loadMore={() => this.loadMoreCards()}
                 />
               </div>
             </div>
