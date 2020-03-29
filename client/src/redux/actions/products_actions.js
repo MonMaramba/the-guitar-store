@@ -31,13 +31,14 @@ export function getProductsByArrival() {
   };
 }
 
+// receiving the states and build an object to send to the server
 export function getProductsToShop(skip, limit, filters = [], prevState = []) {
   const data = {
     skip,
     limit,
     filters
   };
-
+  // creating the request to the server
   const request = axios.post(`${PRODUCT_SERVER}/shop`, data).then(response => {
     return {
       size: response.data.size,
@@ -45,6 +46,7 @@ export function getProductsToShop(skip, limit, filters = [], prevState = []) {
     };
   });
   return {
+    // this gets sent to the reducer
     type: GET_PRODUCTS_TO_SHOP,
     payload: request
   };

@@ -11,6 +11,7 @@ import {
 } from "../../redux/actions/products_actions";
 import CollapsibleCheckbox from "../utils/collapsibleCheckbox.component";
 import CollapseRadio from "../utils/Form/collapseRadioButtons.component";
+import LoadMoreCards from "./load-more-cards.component";
 
 import "./shop.styles.scss";
 
@@ -31,6 +32,7 @@ class Shop extends Component {
     this.props.dispatch(getBrands());
     this.props.dispatch(getWoods());
 
+    // sending selected states to the redux actions
     this.props.dispatch(
       getProductsToShop(this.state.skip, this.state.limit, this.state.filters)
     );
@@ -57,7 +59,9 @@ class Shop extends Component {
       let priceValues = this.handlePrice(filters);
       newFilters[category] = priceValues;
     }
+    // taking the new state and triggering a function to display it
     this.showFilteredResults(newFilters);
+
     this.setState({
       filters: newFilters
     });
@@ -106,7 +110,20 @@ class Shop extends Component {
                 handleFilters={filters => this.handleFilters(filters, "price")}
               />
             </div>
-            <div className="right">right</div>
+            <div className="right">
+              <div className="shop_options">
+                <div className="shop_grids clear"> grids</div>
+              </div>
+            </div>
+            <div>
+              <LoadMoreCards
+                grid={this.state.grid}
+                limit={this.state.limit}
+                size={products.toShopSize}
+                products={products.toShop}
+                loadMore={() => console.log("we want more!")}
+              />
+            </div>
           </div>
         </div>
       </div>

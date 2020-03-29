@@ -54,6 +54,7 @@ app.post("/api/product/shop", (req, res) => {
   for (let key in req.body.filters) {
     if (req.body.filters[key].length > 0) {
       if (key === "price") {
+        // because price is a range in an array
         findArgs[key] = {
           $gte: req.body.filters[key][0],
           $lte: req.body.filters[key][1]
@@ -64,15 +65,18 @@ app.post("/api/product/shop", (req, res) => {
     }
   }
 
+  // passing the instructions via mongoose
   Product.find(findArgs)
     .populate("brand")
     .populate("wood")
     .sort([[sortBy, order]])
     .skip(skip)
     .limit(limit)
+    //executing the instructions
     .exec((err, articles) => {
       if (err) return res.status(400).send(err);
       res.status(200).json({
+        // because the reducer is expecting size and article
         size: articles.length,
         articles
       });
