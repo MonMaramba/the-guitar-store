@@ -77,7 +77,25 @@ class Shop extends Component {
       });
   };
 
-  loadMoreCards = () => {};
+  loadMoreCards = () => {
+    //adding 6 more results to state.skip
+    let skip = this.state.skip + this.state.limit;
+
+    this.props
+      .dispatch(
+        getProductsToShop(
+          skip,
+          this.state.limit,
+          this.state.filters,
+          this.props.products.toShop
+        )
+      ) // updating the state to match number of cards currently on display
+      .then(() => {
+        this.setState({
+          skip
+        });
+      });
+  };
 
   render() {
     const products = this.props.products;

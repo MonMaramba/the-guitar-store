@@ -40,6 +40,7 @@ export function getProductsToShop(skip, limit, filters = [], prevState = []) {
   };
   // creating the request to the server
   const request = axios.post(`${PRODUCT_SERVER}/shop`, data).then(response => {
+    // combining previous state and results from server and updating redux store
     let newState = [...prevState, ...response.data.articles];
     return {
       size: response.data.size,
