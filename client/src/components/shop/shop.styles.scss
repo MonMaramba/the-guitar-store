@@ -8,7 +8,6 @@
     .left {
       flex-grow: 1;
     }
-
     .right {
       width: 800px;
 
@@ -22,53 +21,68 @@
             font-size: 20px;
             color: #c6c6c6;
           }
-          active {
+          .grid_btn {
+            float: right;
+            padding: 10px 10px;
+            font-size: 20px;
+            color: #c6c6c6;
+          }
+          .active {
             color: #727272;
           }
         }
-
         .clear:after {
           content: "";
           display: block;
           clear: both;
         }
       }
-    }
-    .grid_bars {
-      float: none;
-      width: 100%;
-      display: flex;
+      .card_container {
+        .grid_bars {
+          float: none;
+          width: 100%;
+          display: inline-flexbox;
+          .card_item_wrapper {
+            float: none;
+            width: 100%;
+            display: flex;
 
-      .image {
-        width: 420px;
-        height: 211px;
-        border: none;
-      }
+            .action_container {
+              display: block;
+              flex-grow: 1;
+              border: 1px solid #e6e6e6;
 
-      .action_container {
-        flex-grow: 1;
-        border: 1px solid #e6e6e6;
-      }
+              .image {
+                width: 420px;
+                height: 211px;
+                border: none;
+                position: relative;
+                float: left;
+              }
 
-      .description {
-        clear: both;
-        padding: 0px 25px;
-        border-top: 1px solid #eeeeee;
-      }
+              .description {
+                clear: both;
+                padding: 0px 25px;
+                border-top: 1px solid #eeeeee;
+              }
 
-      .tags {
-        border-bottom: 0px;
-        padding: 5px 20px;
+              .tags {
+                border-bottom: 0px;
+                padding: 5px 20px;
 
-        .brand {
-          font-size: 21px;
-          float: left;
-        }
-        .name {
-          float: left;
-        }
-        .price {
-          float: right;
+                .brand {
+                  font-size: 21px;
+                  float: left;
+                }
+                .name {
+                  float: left;
+                }
+                .price {
+                  float: right;
+                }
+              }
+            }
+          }
         }
       }
     }

@@ -10,6 +10,7 @@ import UserDashboard from "./components/user/user-dashboard.component";
 import Shop from "./components/shop/shop.component";
 
 import HomePage from "./components/home/home.component";
+import AddProduct from "./components/user/Admin/add_product.component";
 
 const Routes = props => {
   return (
@@ -19,6 +20,11 @@ const Routes = props => {
           path="/user/dashboard"
           exact
           component={Auth(UserDashboard, true)}
+        />
+        <Route
+          path="/admin/add_product"
+          exact
+          component={Auth(AddProduct, true)}
         />
         <Route path="/" exact component={Auth(HomePage, null)} />
         <Route
