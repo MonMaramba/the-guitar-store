@@ -23,7 +23,7 @@ const links = [
 const admin = [
   {
     name: "Site info",
-    linkTo: "/admin/dashboard"
+    linkTo: "/admin/site_info"
   },
   {
     name: "Add products",
@@ -36,7 +36,6 @@ const admin = [
 ];
 
 const UserLayout = props => {
-  console.log(props);
   const generateLinks = links =>
     links.map((item, i) => (
       <Link to={item.linkTo} key={i}>
@@ -50,6 +49,7 @@ const UserLayout = props => {
         <div className="user_left_nav">
           <h2>My account</h2>
           <div className="links">{generateLinks(links)}</div>
+          {/* if user is adming then show */}
           {props.user.userData.isAdmin ? (
             <div>
               <h2>Admin</h2>

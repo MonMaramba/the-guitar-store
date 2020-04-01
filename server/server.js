@@ -64,6 +64,8 @@ app.post("/api/product/shop", (req, res) => {
       }
     }
   }
+  // to hide if publish === false
+  findArgs["publish"] = true;
 
   // passing the instructions via mongoose
   Product.find(findArgs)
