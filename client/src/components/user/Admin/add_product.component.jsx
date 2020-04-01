@@ -17,6 +17,8 @@ import {
   populateOptionFields
 } from "../../utils/Form/formActions";
 
+import "./add_product.styles.scss";
+
 class AddProduct extends Component {
   state = {
     formError: false,
