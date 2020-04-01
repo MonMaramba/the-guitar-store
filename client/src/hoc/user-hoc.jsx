@@ -49,7 +49,7 @@ const UserLayout = props => {
         <div className="user_left_nav">
           <h2>My account</h2>
           <div className="links">{generateLinks(links)}</div>
-          {/* if user is adming then show */}
+
           {props.user.userData.isAdmin ? (
             <div>
               <h2>Admin</h2>

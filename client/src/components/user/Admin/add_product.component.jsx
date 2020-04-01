@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { getBrands, getWood } from "../../../redux/actions/products_actions";
+import {
+  getBrands,
+  getWoods,
+  addProduct
+} from "../../../redux/actions/products_actions";
 
 import UserLayout from "../../../hoc/user-hoc";
 
@@ -181,8 +185,45 @@ class AddProduct extends Component {
     }
   };
 
+  updateFields = newFormData => {
+    this.setState({
+      // formdata: newFormData
+    });
+  };
+
+  updateForm = element => {
+    const newFormdata = update(element, this.state.formdata, "products");
+    this.setState({
+      formError: false,
+      formdata: newFormdata
+    });
+  };
+
+  resetFieldsHandler = () => {
+    this.setState({
+      formSuccess: true
+    });
+  };
+
   submitForm = event => {
     event.preventDefault();
+
+    let dataToSubmit = generateData(this.state.formdata, "register");
+    let formIsValid = isFormValid(this.state.formdata, "register");
+
+    if (formIsValid) {
+      this.props.dispatch(addProduct(dataToSubmit)).then(() => {
+        if (this.props.products.addProduct.success) {
+          this.resetFieldsHandler();
+        } else {
+          this.setState({ formError: true });
+        }
+      });
+    } else {
+      this.setState({
+        formError: true
+      });
+    }
   };
 
   componentDidMount() {
@@ -191,10 +232,18 @@ class AddProduct extends Component {
     this.props.dispatch(getBrands()).then(response => {
       const newFormData = populateOptionFields(
         formdata,
-        this.props.products.brand,
+        this.props.products.brands,
         "brand"
       );
-      console.log(newFormData);
+      this.updateFields(newFormData);
+    });
+    this.props.dispatch(getWoods()).then(response => {
+      const newFormData = populateOptionFields(
+        formdata,
+        this.props.products.woods,
+        "wood"
+      );
+      this.updateFields(newFormData);
     });
   }
 
@@ -205,50 +254,50 @@ class AddProduct extends Component {
           <h1>Add Product</h1>
           <form onSubmit={event => this.submitForm(event)}>
             <FormField
-              id={"name"}
+              id="name"
               formdata={this.state.formdata.name}
               change={element => this.updateForm(element)}
             />
             <FormField
-              id={"description"}
+              id="description"
               formdata={this.state.formdata.description}
               change={element => this.updateForm(element)}
             />
             <FormField
-              id={"price"}
+              id="price"
               formdata={this.state.formdata.price}
               change={element => this.updateForm(element)}
             />
             <div className="form_divider"></div>
             <FormField
-              id={"brand"}
+              id="brand"
               formdata={this.state.formdata.brand}
               change={element => this.updateForm(element)}
             />
             <FormField
-              id={"shipping"}
+              id="shipping"
               formdata={this.state.formdata.shipping}
               change={element => this.updateForm(element)}
             />
             <FormField
-              id={"available"}
+              id="available"
               formdata={this.state.formdata.available}
               change={element => this.updateForm(element)}
             />
             <div className="form_divider"></div>
             <FormField
-              id={"wood"}
+              id="wood"
               formdata={this.state.formdata.wood}
               change={element => this.updateForm(element)}
             />
             <FormField
-              id={"frets"}
+              id="frets"
               formdata={this.state.formdata.frets}
               change={element => this.updateForm(element)}
             />
             <div className="form_divider"></div>
             <FormField
-              id={"publish"}
+              id="publish"
               formdata={this.state.formdata.publish}
               change={element => this.updateForm(element)}
             />
