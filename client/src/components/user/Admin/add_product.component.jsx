@@ -19,6 +19,8 @@ import {
   resetFields
 } from "../../utils/Form/formActions";
 
+import FileUpload from "../../utils/Form/fileUpload";
+
 import "./add_product.styles.scss";
 
 class AddProduct extends Component {
@@ -185,6 +187,16 @@ class AddProduct extends Component {
         touched: false,
         validationMessage: "",
         showlabel: true
+      },
+      images: {
+        value: [],
+        validation: {
+          required: false
+        },
+        validation: true,
+        touched: false,
+        validationMessage: "",
+        showlabel: false
       }
     }
   };
@@ -264,12 +276,20 @@ class AddProduct extends Component {
     });
   }
 
+  imagesHandler = images => {};
+
   render() {
     return (
       <UserLayout>
         <div>
           <h1>Add Product</h1>
           <form onSubmit={event => this.submitForm(event)}>
+            <FileUpload
+              imagesHandler={images => {
+                this.imagesHandler(images);
+              }}
+              reset={this.state.formSuccess}
+            />
             <FormField
               id="name"
               formdata={this.state.formdata.name}
