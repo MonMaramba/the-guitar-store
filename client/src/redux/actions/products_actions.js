@@ -5,7 +5,8 @@ import {
   GET_BRANDS,
   GET_WOODS,
   GET_PRODUCTS_TO_SHOP,
-  ADD_PRODUCT
+  ADD_PRODUCT,
+  CLEAR_PRODUCT
 } from "./types";
 
 import { PRODUCT_SERVER } from "../../components/utils/misc";
@@ -63,6 +64,14 @@ export function addProduct(dataToSubmit) {
   return {
     type: ADD_PRODUCT,
     payload: request
+  };
+}
+
+//clearing state after add_product has rendered
+export function clearProduct() {
+  return {
+    type: CLEAR_PRODUCT,
+    payload: ""
   };
 }
 
