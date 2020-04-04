@@ -5,7 +5,8 @@ import axios from "axios";
 import FontAwesomeIcon from "@fortawesome/react-fontawesome";
 import faPlusCircle from "@fortawesome/fontawesome-free-solid/faPlusCircle";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { response } from "express";
+
+import "./fileUpload.styles.scss";
 
 class FileUpload extends React.Component {
   constructor() {
@@ -23,12 +24,16 @@ class FileUpload extends React.Component {
       header: { "content-type": "multipart/form-data" }
     };
     formData.append("file", files[0]);
-
     axios.post("/api/users/uploadimage", formData, config).then(response => {
-      this.setState({
-        uploading: false,
-        uploadedFiles: [...this.state.uploadedFiles, response.data]
-      });
+      this.setState(
+        {
+          uploading: false,
+          uploadedFiles: [...this.state.uploadedFiles, response.data]
+        },
+        () => {
+          this.props.imagesHandler(this.state.uploadedFiles);
+        }
+      );
     });
   };
 

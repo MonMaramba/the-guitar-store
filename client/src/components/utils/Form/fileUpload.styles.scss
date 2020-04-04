@@ -1,0 +1,35 @@
+// .dropzone {
+//   border: 1px solid #e5e5e5;
+//   margin-bottom: 40px;
+
+//   .wrap {
+//   }
+// }
+.dropzone {
+  div {
+    border: 1px solid #eaeaea;
+    padding: 3px;
+    margin-bottom: 5px;
+  }
+  & .clear {
+    .dropzone_box {
+      float: right;
+      width: 20%;
+      height: 200px;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+  }
+}
+.wrap {
+  background: #eaeaea;
+  width: 25%;
+  height: 150px;
+  text-align: center;
+  padding-top: 40px !important;
+  box-sizing: border-box;
+  font-size: 49px;
+  background-size: contain !important;
+  background-position: center center !important;
+  border: 1px solid #eaeaea;
+}
