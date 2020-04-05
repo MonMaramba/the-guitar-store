@@ -7,7 +7,6 @@ import {
   ADD_PRODUCT,
   CLEAR_PRODUCT
 } from "../actions/types";
-import { STATES } from "mongoose";
 
 export default function(state = {}, action) {
   switch (action.type) {

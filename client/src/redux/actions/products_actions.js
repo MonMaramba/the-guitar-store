@@ -6,31 +6,30 @@ import {
   GET_WOODS,
   GET_PRODUCTS_TO_SHOP,
   ADD_PRODUCT,
-  CLEAR_PRODUCT
+  CLEAR_PRODUCT,
 } from "./types";
 
 import { PRODUCT_SERVER } from "../../components/utils/misc";
-import add_productComponent from "../../components/user/Admin/add_product.component";
 
 export function getProductsBySell() {
   const request = axios
     .get(`${PRODUCT_SERVER}/articles?sortBy=sold&order=desc&limit=4`)
-    .then(response => response.data);
+    .then((response) => response.data);
 
   return {
     type: GET_PRODUCTS_BY_SELL,
-    payload: request
+    payload: request,
   };
 }
 
 export function getProductsByArrival() {
   const request = axios
     .get(`${PRODUCT_SERVER}/articles?sortBy=createdAt&order=desc&limit=4`)
-    .then(response => response.data);
+    .then((response) => response.data);
 
   return {
     type: GET_PRODUCTS_BY_ARRIVAL,
-    payload: request
+    payload: request,
   };
 }
 
@@ -39,31 +38,33 @@ export function getProductsToShop(skip, limit, filters = [], prevState = []) {
   const data = {
     skip,
     limit,
-    filters
+    filters,
   };
   // creating the request to the server
-  const request = axios.post(`${PRODUCT_SERVER}/shop`, data).then(response => {
-    // combining previous state and results from server and updating redux store
-    let newState = [...prevState, ...response.data.articles];
-    return {
-      size: response.data.size,
-      articles: newState
-    };
-  });
+  const request = axios
+    .post(`${PRODUCT_SERVER}/shop`, data)
+    .then((response) => {
+      // combining previous state and results from server and updating redux store
+      let newState = [...prevState, ...response.data.articles];
+      return {
+        size: response.data.size,
+        articles: newState,
+      };
+    });
   return {
     // this gets sent to the reducer
     type: GET_PRODUCTS_TO_SHOP,
-    payload: request
+    payload: request,
   };
 }
 
 export function addProduct(dataToSubmit) {
   const request = axios
     .post(`${PRODUCT_SERVER}/article`, dataToSubmit)
-    .then(response => response.data);
+    .then((response) => response.data);
   return {
     type: ADD_PRODUCT,
-    payload: request
+    payload: request,
   };
 }
 
@@ -71,7 +72,7 @@ export function addProduct(dataToSubmit) {
 export function clearProduct() {
   return {
     type: CLEAR_PRODUCT,
-    payload: ""
+    payload: "",
   };
 }
 
@@ -82,20 +83,20 @@ export function clearProduct() {
 export function getBrands() {
   const request = axios
     .get(`${PRODUCT_SERVER}/brands`)
-    .then(response => response.data);
+    .then((response) => response.data);
 
   return {
     type: GET_BRANDS,
-    payload: request
+    payload: request,
   };
 }
 export function getWoods() {
   const request = axios
     .get(`${PRODUCT_SERVER}/woods`)
-    .then(response => response.data);
+    .then((response) => response.data);
 
   return {
     type: GET_WOODS,
-    payload: request
+    payload: request,
   };
 }

@@ -20,16 +20,18 @@
       box-sizing: border-box;
     }
   }
-}
-.wrap {
-  background: #eaeaea;
-  width: 25%;
-  height: 150px;
-  text-align: center;
-  padding-top: 40px !important;
-  box-sizing: border-box;
-  font-size: 49px;
-  background-size: contain !important;
-  background-position: center center !important;
-  border: 1px solid #eaeaea;
+  .wrap {
+    display: flex;
+    justify-content: center;
+    background: #eaeaea;
+    width: 25%;
+    height: 150px;
+    text-align: center;
+    padding-top: 45px !important;
+    box-sizing: border-box;
+    font-size: 49px;
+    background-size: contain !important;
+    background-position: center center !important;
+    border: 1px solid #eaeaea;
+  }
 }
