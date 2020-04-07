@@ -20,20 +20,34 @@ class FileUpload extends React.Component {
   onDrop = (files) => {
     this.setState({ uploading: true });
     let formData = new FormData();
-    const config = {
-      header: { "content-type": "multipart/form-data" },
-    };
+    const config = { headers: { "content-type": "multipart/form-data" } };
 
     formData.append("file", files[0]);
 
     axios.post("/api/users/uploadimage", formData, config).then((response) => {
       this.setState(
         {
-          uploading: false,
+          uploading: true,
           uploadedFiles: [...this.state.uploadedFiles, response.data],
         },
         () => {
           this.props.imagesHandler(this.state.uploadedFiles);
+        }
+      );
+    });
+  };
+
+  onRemove = (id) => {
+    axios.get(`/api/users/removeimage?public_id=${id}`).then((response) => {
+      let images = this.state.uploadedFiles.filter((item) => {
+        return item.public_id !== id;
+      });
+      this.setState(
+        {
+          uploadedFiles: images,
+        },
+        () => {
+          this.props.imagesHandler(images);
         }
       );
     });
@@ -54,6 +68,15 @@ class FileUpload extends React.Component {
         }
       </div>
     ));
+
+  static getDerivedStateFromProps(props, state) {
+    if (props.reset) {
+      return (state = {
+        uploadedFiles: [],
+      });
+    }
+    return null;
+  }
 
   render() {
     return (
