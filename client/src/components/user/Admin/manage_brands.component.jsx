@@ -66,5 +66,5 @@ const mapStateToProps = (state) => {
     products: state.products,
   };
 };
-
+// test
 export default connect(mapStateToProps)(ManageBrands);
