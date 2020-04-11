@@ -87,9 +87,9 @@ class ManageBrands extends Component {
     this.props.dispatch(getBrands());
   }
 
-  componentDidUpdate() {
-    this.props.dispatch(getBrands());
-  }
+  // componentDidUpdate() {
+  //   this.props.dispatch(getBrands());
+  // }
 
   render() {
     return (
@@ -125,5 +125,5 @@ const mapStateToProps = (state) => {
     products: state.products,
   };
 };
-// test
+
 export default connect(mapStateToProps)(ManageBrands);
