@@ -10,6 +10,8 @@ import {
 } from "../../utils/Form/formActions";
 import { getBrands } from "../../../redux/actions/products_actions";
 
+import "./manage-brands.styles.scss";
+
 class ManageBrands extends Component {
   state = {
     formError: false,
