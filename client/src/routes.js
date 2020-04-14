@@ -12,6 +12,7 @@ import Shop from "./components/shop/shop.component";
 import HomePage from "./components/home/home.component";
 import AddProduct from "./components/user/Admin/add_product.component";
 import ManageCategories from "./components/user/Admin/manage_categories.component";
+import ProductPage from "./components/product/product.component";
 
 const Routes = (props) => {
   return (
@@ -40,6 +41,11 @@ const Routes = (props) => {
         />
         <Route path="/shop" exact component={Auth(Shop, null)} />
         <Route path="/register" exact component={Auth(Register, false)} />
+        <Route
+          path="/product_detail/:id"
+          exact
+          component={Auth(ProductPage, null)}
+        />
       </Switch>
     </Layout>
   );
