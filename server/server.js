@@ -1,6 +1,8 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const formidable = require("express-formidable");
+const cloudinary = require("cloudinary");
 
 const app = express();
 const mongoose = require("mongoose");
@@ -9,12 +11,19 @@ require("dotenv").config();
 mongoose.Promise = global.Promise;
 mongoose.connect(process.env.DATABASE, {
   useNewUrlParser: true,
-  useUnifiedTopology: true
+  useUnifiedTopology: true,
 });
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cookieParser());
+
+// for cloudinary uploads
+cloudinary.config({
+  cloud_name: process.env.CLOUD_NAME,
+  api_key: process.env.CLOUD_API_KEY,
+  api_secret: process.env.CLOUD_API_SECRET,
+});
 
 // Models
 const { User } = require("./models/user");
@@ -36,7 +45,7 @@ app.get("/api/users/auth", auth, (req, res) => {
     lastname: req.user.lastname,
     role: req.user.role,
     cart: req.user.cart,
-    history: req.user.history
+    history: req.user.history,
   });
 });
 
@@ -57,7 +66,7 @@ app.post("/api/product/shop", (req, res) => {
         // because price is a range in an array
         findArgs[key] = {
           $gte: req.body.filters[key][0],
-          $lte: req.body.filters[key][1]
+          $lte: req.body.filters[key][1],
         };
       } else {
         findArgs[key] = req.body.filters[key];
@@ -80,7 +89,7 @@ app.post("/api/product/shop", (req, res) => {
       res.status(200).json({
         // because the reducer is expecting size and article
         size: articles.length,
-        articles
+        articles,
       });
     });
 });
@@ -114,7 +123,7 @@ app.get("/api/product/articles_by_id", (req, res) => {
   if (type === "array") {
     let ids = req.query.id.split(",");
     items = [];
-    items = ids.map(item => {
+    items = ids.map((item) => {
       return mongoose.Types.ObjectId(item); // pushes object ids to the array
     });
   }
@@ -135,7 +144,7 @@ app.post("/api/product/article", auth, admin, (req, res) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
       success: true,
-      article: doc
+      article: doc,
     });
   });
 });
@@ -150,7 +159,7 @@ app.post("/api/product/wood", auth, admin, (req, res) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
       success: true,
-      wood: doc
+      wood: doc,
     });
   });
 });
@@ -173,7 +182,7 @@ app.post("/api/product/brand", auth, admin, (req, res) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
       success: true,
-      brand: doc
+      brand: doc,
     });
   });
 });
@@ -196,7 +205,7 @@ app.post("/api/users/register", (req, res) => {
   user.save((err, doc) => {
     if (err) return res.json({ success: false, err });
     res.status(200).json({
-      success: true
+      success: true,
     });
   });
 });
@@ -208,7 +217,7 @@ app.post("/api/users/login", (req, res) => {
     if (!user)
       return res.json({
         loginSuccess: false,
-        message: "auth failed, email not found"
+        message: "auth failed, email not found",
       });
     // check password match
     user.comparePassword(req.body.password, (err, isMatch) => {
@@ -217,12 +226,9 @@ app.post("/api/users/login", (req, res) => {
       // generate token
       user.generateToken((err, user) => {
         if (err) return res.status(400).send(err);
-        res
-          .cookie("w_auth", user.token)
-          .status(200)
-          .json({
-            loginSuccess: true
-          });
+        res.cookie("w_auth", user.token).status(200).json({
+          loginSuccess: true,
+        });
       });
     });
   });
@@ -233,9 +239,26 @@ app.get("/api/users/logout", auth, (req, res) => {
   User.findOneAndUpdate({ _id: req.user._id }, { token: "" }, (err, doc) => {
     if (err) return res.json({ success: false, err });
     return res.status(200).send({
-      success: true
+      success: true,
     });
   });
+});
+
+app.post("/api/users/uploadimage", auth, admin, formidable(), (req, res) => {
+  cloudinary.uploader.upload(
+    req.files.file.path,
+    (result) => {
+      console.log(result);
+      res.status(200).send({
+        public_id: result.public_id,
+        url: result.url,
+      });
+    },
+    {
+      public_id: `${Date.now()}`,
+      resource_type: "auto",
+    }
+  );
 });
 
 // creating the server

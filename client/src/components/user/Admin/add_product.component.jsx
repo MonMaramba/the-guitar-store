@@ -282,7 +282,7 @@ class AddProduct extends Component {
       ...this.state.formdata,
     };
     newFormData["images"].value = images;
-    newFormData[images].valid = true;
+    newFormData["images"].valid = true;
 
     this.setState({
       formdata: newFormData,

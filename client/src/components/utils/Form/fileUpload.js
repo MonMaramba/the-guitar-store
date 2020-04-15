@@ -18,16 +18,17 @@ class FileUpload extends React.Component {
   }
 
   onDrop = (files) => {
+    console.log(files);
     this.setState({ uploading: true });
     let formData = new FormData();
-    const config = { headers: { "content-type": "multipart/form-data" } };
+    const config = { header: { "content-type": "multipart/form-data" } };
 
     formData.append("file", files[0]);
 
     axios.post("/api/users/uploadimage", formData, config).then((response) => {
       this.setState(
         {
-          uploading: true,
+          uploading: false,
           uploadedFiles: [...this.state.uploadedFiles, response.data],
         },
         () => {
